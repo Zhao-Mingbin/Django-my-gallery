@@ -2,6 +2,26 @@
 {#<html lang="en">#}
 {#<head>#}
 {#    <meta charset="UTF-8">#}
+{#    <title>my blog</title>#}
+{#</head>#}
+{#<body>#}
+{#<h1>blog</h1>#}
+{#{% for blog in blogs.all  %}#}
+{#{{ blog.title }}#}
+{#    <br>#}
+{#    {{ blog.text }}#}
+{#    <br>#}
+{#    {{ blog.data }}#}
+{#    <br>#}
+{#    <img src="{{ blog.image.url }}" height="20%">#}
+{#{% endfor %}#}
+{##}
+{#</body>#}
+{#</html>#}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
 {#    <title>this is the home page</title>#}
 {#</head>#}
 {#<body>#}
@@ -15,14 +35,20 @@
 {#</html>#}
 <!doctype html>
 <html lang="en">
-{% load  staticfiles %}
-<head>
+<style type="text/css">
+    pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+</style>
+
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Album example · Bootstrap</title>
+    <title>我的博客</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
 
@@ -96,32 +122,26 @@
 
   <section class="jumbotron text-center">
     <div class="container">
-      <h1>Album example</h1>
+      <h1>我的博客</h1>
       <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
       <p>
-          <img src="{%static "a301122651.png" %}" alt="">
-          <br>
-        <a href="blog/" class="btn btn-primary my-2">前往我的博客</a>
-          <a href="{% static "resume.pdf" %}" class="btn btn-primary my-2">我的简历</a>
+        <a href=".." class="btn btn-primary my-2">返回主页</a>
       </p>
     </div>
   </section>
-
+    <div class="container">
+        {% for blog in blogs.all  %}
+        <h2><a href="{{ blog.id }}">{{ blog.title }}</a></h2>
+            <br>
+            <pre style="width: 750px">{{ blog.short_text }}</pre>
+            <br>
+            {{ blog.data }}
+            <br>
+            <img src="{{ blog.image.url }}" height="200">
+        {% endfor %}
+    </div>
   <div class="album py-5 bg-light">
     <div class="container">
-
-      <div class="row">
-          {% for gallary in gallerys.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <img src="{{ gallary.image.url }}" alt="">
-            <div class="card-body">
-              <p class="card-text">{{ gallary.description }}</p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
     </div>
   </div>
 
@@ -140,3 +160,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </html>
+
+
+
+
